@@ -30,6 +30,7 @@ class Result {
         //add element to front (position 0) of List
         reverseArray.add(0, a.get(i));
     
+        //remove element from end of List
         if (reverseArray.size() > a.size()) {
         reverseArray.remove(reverseArray.size() - 1);
         }
