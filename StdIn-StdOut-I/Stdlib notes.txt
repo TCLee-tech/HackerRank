@@ -1,0 +1,47 @@
+In production codes, use Scanner class.
+
+StdIn
+StdIn class provides static methods for reading only standard input.
+Make sure you have StdIn.class in Java classpath.
+"In" is object-orientated version that handles input from files, URLs and sockets.
+Methods are blocking, i.e. will wait until there is standard input.
+
+To print, use StdOut.println() from StdOut class.
+
+Methods to read tokens and converting to primitive types and strings:
+isEmpty()
+readInt()
+readDouble()
+readString()
+readShort()
+readLong()
+readFloat()
+readByte()
+readBoolean()
+
+A token is a maximal sequence of non-whitespace characters.
+isEmpty() returns true if no more tokens in input.
+Each other method reads token and attempts to convert it into a value of the specified type. If successful, will return value. If not, throws InputMismatchException. Will skip whitespace (spaces, tabs, newlines). StdIn uses whitespace as delimiter.
+
+Methods to read characters:
+hasNextChar() //true if have more input, including whitespace.
+readChar() //returns next character, including whitespace.
+
+Methods to read lines:
+hasNextLine() // true if have more input
+readLine()
+
+Methods to read sequence of values of same type:
+readAllDoubles()
+readAllInts()
+readAllLongs()
+readAllStrings()
+readAllLines()
+readAll()
+
+Above is extracted from an excellent Princeton University resource:
+https://introcs.cs.princeton.edu/java/stdlib/javadoc/StdIn.html
+Standard Libraries:
+https://introcs.cs.princeton.edu/java/stdlib/
+Princeton Uni Computer Science - Intro to Programming in Java:
+https://introcs.cs.princeton.edu/java/
