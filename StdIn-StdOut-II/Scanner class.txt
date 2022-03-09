@@ -1,0 +1,26 @@
+Scanner class
+java.util package
+
+Some constructors
+Scanner sc = new Scanner("path/to/file")
+Scanner sc = new Scanner(System.in)
+
+Some methods
+String name = sc.nextLine();
+
+nextBoolean()
+nextByte()
+nextDouble
+nextFloat()
+nextInt()
+nextLine() //for String
+nextLong()
+nextShort()
+close() // close scanner, to prevent resource leak
+
+findAll("pattern string here") //to find a stream that match provided pattern string
+hasNext() // returns true if have another token in input
+next() // to get next complete token from the scanner which is in use
+reset() // reset scanner
+skip() // skip input that match pattern
+useDelimiter("/") // change and use this delimiter pattern
