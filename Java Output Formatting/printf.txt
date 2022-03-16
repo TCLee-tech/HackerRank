@@ -1,0 +1,86 @@
+java.io package
+Class PrintStream
+public PrintStream printf(String format, Object... args)
+public PrintStream format(String format, Object... args)
+print() and println() are also PrintStream methods. So can substitute with printf() or format() in codes.
+The format is of String type, containing fixed text and/or embedded format specifiers.
+Format specifications begin with percent(%) sign. They determine output format for arguments that follow the format-string.
+	 - example: 
+		Calendar c = new GregorianCalendar(1995, MAY, 23);
+		String s = String.format("Duke's Birthday: %1$tm %1te, %1tY", c);
+		//s == "Duke's Birthday: May 23, 1995"
+The format-string is read from left to right. When the first format specification is found, the value of the first argument after the format-string is converted and printed according to the format specification. The second format specification causes the second argument after the format-string to be converted and printed, and so on through the end of the format-string. If there are more arguments than there are format specifications, the extra arguments are evaluated and ignored. The results are undefined if there are not enough arguments for all the format specifications.
+
+java.util package
+Class Formatter
+methods to format OutputStream, PrintStream & File.
+What kind of formatting is available?
+=> alignment, formats for numbers, string and date/time, location-specific pattern.
+
+Syntax for format specifiers:
+%[argument_index$][flags][width][precision]type
+all those inside [] are optional
+
+[argument_index] is an integer indicating position of argument in argument list.
+Conversions can be applied to the nth argument after the format-string in the argument list, rather than to the next unused argument. In this case, the conversion character % is replaced by the sequence %n$, where n is a positive integer in the range 1 through NL_ARGMAX, giving the position of the argument in the argument list. Argument index cannot be greater than the number of entries in the argument-list, or else the results are undefined. This feature provides for the definition of format strings that select arguments in an order appropriate to specific languages.
+Example: first argument '%1$', second argument '%2$' etc
+For format-strings containing the %n$ form of conversion specifications, numbered arguments in the argument list can be referenced from the format-string as many times as required.
+For format-strings containing the %n$ form of conversion specification, a field width or precision may be indicated using the sequence *m$, where m is an integer giving the position in the argument-list of  an integer argument for the field width or precision.
+Example: printf("%1$d:%2$.*3$d:%4$.*3$d\n", hour, min, precision, sec);
+The format-string can contain either numbered argument specifiers(that is, %n$ and *m$) or unnumbered argument specifiers(that is, % and *), but normally, not both.
+ - the only exception is %% can be mixed with %n$.
+ - otherwise, result is undefined.
+When using numbered argument specifiers, specifying the nth argument requires that all previous arguments, from the first to the (n-1)th argument, must be specified in the format-string.
+
+[flags] 
+modify output format.
+'-' left-justified. Spaces will be added to the right end of the converted value to fill the minimum width of field. Default is right-justified if this field not present.
+'0' output will be zero-padded to minimum field width.
+'+' requires positive number outputs to have + sign. If this flag not included, then only negative value outputs will have - sign.
+'(' enclose negative number outputs in ()
+
+
+[width] is positive integer indicating minimum number of characters to output.
+If the number of characters(bytes) in the output value is less than the specified width, blanks are added until the minimum width is reached. Blanks are added to right if - flag used. Blanks added to left if no - flag.
+The width specification can be an asterisk (*), in which case an argument from the argument list supplies the value. The width argument must precede the value being formatted in the argument list.
+
+[precision] is positive decimal integer preceded by a period(that is, a .)
+It specifies number of decimal places.
+It can cause floating-point decimal value to be rounded off when output. For f, F, D, e, E types.
+For floating point numbers, it refers to number of digits after decimal. '%.2f' and '%.2b'.
+The precision specification can be an asterisk (*), in which case an argument from the argument list supplies the value. The precision argument must precede the value being formatted in the argument list.
+
+<type> is required character indicating how argument should be formatted.
+ if denoted by upper-case character, output will be formatted in upper case.
+ if denoted by lower-case character, output will be in lower case.
+'b' and 'B', for Boolean 'true' or 'false'.
+'s' string
+'h' hash code value
+'n' next line seperator
+to print'%', escape with '%%'.
+'c' char and Character.
+'d' and 'f' decimal integer
+'e' and 'g' require output to be formatted in scientific notation.
+
+Syntax for date/time format specifiers:
+%[argument_index$][flags][width]type
+Specifying the type is required, a "t" or "T" followed by another character.
+e.g. 24hr clock %tH:%tM:%tS", 
+12hr clock "%tI:%tM:%tS %Tp" (I is hour for 12-hour clock, p is for am/pm),
+date "%td/%tm/%ty".
+
+Reference:
+
+JDK 17 documentation
+https://docs.oracle.com/en/java/javase/17/
+
+Java 17 Class Formatter
+https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Formatter.html
+
+Java 17 Class PrintStream
+https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/PrintStream.html
+
+Java 7.4 printf()
+Good explanation but outdated.
+https://www.ibm.com/docs/en/i/7.2?topic=functions-printf-print-formatted-characters
+
